@@ -127,6 +127,22 @@ func NewClientStartTLS(conn net.Conn, tlsConfig *tls.Config) (*Client, error) {
 	return c, nil
 }
 
+// NewClientStartTLSWithLocalName is same as NewClientStartTLS, with the option to provide
+// a client identifier (local name) to when initiating the connection.
+func NewClientStartTLSWithLocalName(conn net.Conn, tlsConfig *tls.Config, localName string) (*Client, error) {
+	if err := validateLine(localName); err != nil {
+		return nil, err
+	}
+
+	c := NewClient(conn)
+	c.localName = localName
+	if err := initStartTLS(c, tlsConfig); err != nil {
+		c.Close()
+		return nil, err
+	}
+	return c, nil
+}
+
 func initStartTLS(c *Client, tlsConfig *tls.Config) error {
 	if err := c.hello(); err != nil {
 		return err
