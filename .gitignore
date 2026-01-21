@@ -1,26 +1,21 @@
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
+# .gitignore
+#
 
-# Folders
-_obj
-_test
+# build
+.build/
+vendor/
 
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
+# code coverage
+.coverage.out
 
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
+# local settings
+.local.env
+.idea/
+.vscode/
+launch.json
 
-_testmain.go
-
-*.exe
-*.test
-*.prof
-
-/main.go
+# temporary files
+*.swp
+*.swo
+*~
+.tmp/
